@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional 3D Animation & Modeling Course</title>
+    <style>
+        /* Enable smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Particles Animation (teal-purple for 3D theme) */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: #00ffff; /* Teal glow */
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); }
+            100% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        /* Hero Section - 3D Animation Theme */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://elements-resized.envatousercontent.com/elements-video-cover-images/04ce50aa-b8ea-4960-a73f-0e6411a37425/video_preview/video_preview_0000.jpg?w=1920') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 180px 20px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 10s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            100% { opacity: 0.8; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #00ffff; }
+            100% { text-shadow: 0 0 30px #00ffff; }
+        }
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        .highlights {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .highlight {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,255,255,0.5);
+            transition: all 0.3s;
+        }
+        .highlight:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0,255,255,0.6);
+        }
+        .highlight.btn {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(0,255,255,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0,255,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,255,255,0); }
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Fade-in on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sections */
+        .curriculum, .instructors, .projects {
+            padding: 100px 0;
+        }
+        .curriculum { background: #0a0a0a; }
+        .instructors { background: #111; }
+        .projects { background: #0a0a0a; }
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: #00ffff;
+        }
+        .curriculum-grid, .instructor-grid, .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .module, .instructor, .project-card {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.4s;
+        }
+        .module:hover, .instructor:hover, .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0,255,255,0.3);
+        }
+        .module img, .instructor img, .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .instructor img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .highlights, .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="particles">
+            <div class="particle" style="width:10px;height:10px;left:10%;animation-delay:0s;"></div>
+            <div class="particle" style="width:15px;height:15px;left:30%;animation-delay:5s;"></div>
+            <div class="particle" style="width:8px;height:8px;left:50%;animation-delay:10s;"></div>
+            <div class="particle" style="width:12px;height:12px;left:70%;animation-delay:2s;"></div>
+            <div class="particle" style="width:10px;height:10px;left:90%;animation-delay:8s;"></div>
+        </div>
+        <div class="hero-content container">
+            <h1>Professional 3D Animation & Modeling</h1>
+            <p class="subtitle">Master industry-standard tools and create stunning characters, environments, and cinematic animations with us</p>
+            <div class="highlights">
+                <a href="#curriculum" class="highlight btn">💡 Curriculum Overview</a>
+                <a href="#instructors" class="highlight btn">👨🏻‍💻 Industry Experts</a>
+                <a href="#projects" class="highlight btn">👾 Real 3D animation Projects</a>
+            </div>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">⚡ Start Your Animation Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="curriculum fade-in">
+        <div class="container">
+            <h2>Curriculum Overview</h2>
+            <div class="curriculum-grid">
+                <div class="module">
+                    <img src="https://irendering.net/wp-content/uploads/2024/08/Blender-vs-Cinema-4D-Choosing-the-suitable-3D-rendering-software-4.jpg" alt="Blender Fundamentals">
+                    <h3>Module 1: Blender Mastery</h3>
+                    <p>Modeling, sculpting, texturing, and animation basics. Build your first character.</p>
+                </div>
+                <div class="module">
+                    <img src="https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0be752e9-0b4c-4574-a44c-06398d92ba92_1280x720.jpeg" alt="Maya Advanced">
+                    <h3>Module 2: Autodesk Maya Pro</h3>
+                    <p>Rigging, dynamics, and film-quality rendering. Create complex animations.</p>
+                </div>
+                <div class="module">
+                    <img src="https://tvscube.com/wp-content/uploads/2025/07/Cinema4D-1024x683.webp" alt="Cinema 4D">
+                    <h3>Module 3: Cinema 4D & Rendering</h3>
+                    <p>Motion graphics, VFX, and Arnold/Redshift rendering. Polish cinematic scenes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructors" class="instructors fade-in">
+        <div class="container">
+            <h2>Our Industry Experts</h2>
+            <div class="instructor-grid">
+                <div class="instructor">
+                    <img src="https://i0.wp.com/animatricks.net/2022/wp-content/uploads/sites/13/2022/05/Peke.jpg?resize=1024%2C582&ssl=1" alt="Alex Chen">
+                    <h3>Alex Chen</h3>
+                    <p>Senior Animator at Pixar, 15+ years in feature films.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://img.freepik.com/premium-vector/set-3d-realistic-professional-old-teacher-professor-man-vector-character-holding-book_572288-2246.jpg" alt="Sarah Lee">
+                    <h3>Sarah Lee</h3>
+                    <p>Blender Expert & VFX Supervisor, worked on major Netflix series.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://img.freepik.com/premium-photo/3d-render-teacher-professional-manager-cartoon-character-stands-near-blank-board_204298-1699.jpg" alt="Mike Rivera">
+                    <h3>Mike Rivera</h3>
+                    <p>Cinema 4D Specialist, freelance for advertising & games.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects fade-in">
+        <div class="container">
+            <h2>Portfolio Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5d4b249616f93e000149aebd/1566057174738-CWA8QJMMP0BC7JZR46RM/kenji-shimomura-seastation-20.jpg" alt="Sci-Fi Environment">
+                    <h3>Project 1: Floating Sci-Fi City</h3>
+                    <p>Fully modeled & rendered environment with dynamic lighting and particles in Blender.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://static.skillshare.com/uploads/discussion/tmp/2973bbad.jpg" alt="Fantasy Character">
+                    <h3>Project 2: Fantasy Creature Animation</h3>
+                    <p>Rigged character with walk cycle and expressive animation in Maya.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1381208532599941" alt="Cinematic Scene">
+                    <h3>Project 3: Cinematic VFX Shot</h3>
+                    <p>Motion graphics sequence with simulations and compositing in Cinema 4D.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

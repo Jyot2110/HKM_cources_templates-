@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Website Design Course</title>
+    <style>
+        /* Enable smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Particles Animation (pink-teal for creative design theme) */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: #ff69b4; /* Hot pink glow */
+            border-radius: 50%;
+            opacity: 0.4;
+            box-shadow: 0 0 15px #ff69b4;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); }
+            100% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        /* Hero Section with Animated Background - Website Design Theme */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://thumbs.dreamstime.com/b/abstract-neon-wave-background-bright-glowing-lines-dots-futuristic-digital-art-design-vibrant-purple-pink-blue-gradient-385666117.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 180px 20px;
+            overflow: hidden;
+            animation: zoomBackground 30s infinite alternate;
+        }
+        @keyframes zoomBackground {
+            0% { background-size: 100%; }
+            100% { background-size: 110%; }
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(45deg, rgba(255,105,180,0.3), rgba(138,43,226,0.3), rgba(0,255,255,0.2));
+            opacity: 0.6;
+            animation: waveOverlay 15s infinite linear;
+        }
+        @keyframes waveOverlay {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(50px) translateY(50px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ff69b4; }
+            100% { text-shadow: 0 0 30px #ff69b4; }
+        }
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        .highlights {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .highlight {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,105,180,0.5);
+            transition: all 0.3s;
+        }
+        .highlight:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255,105,180,0.6);
+        }
+        .highlight.btn {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #ff69b4, #8a2be2);
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(255,105,180,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255,105,180,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,105,180,0); }
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Fade-in on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sections */
+        .curriculum, .instructors, .projects {
+            padding: 100px 0;
+        }
+        .curriculum { background: #0a0a0a; }
+        .instructors { background: #111; }
+        .projects { background: #0a0a0a; }
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: #ff69b4;
+        }
+        .curriculum-grid, .instructor-grid, .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .module, .instructor, .project-card {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.4s;
+        }
+        .module:hover, .instructor:hover, .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(255,105,180,0.3);
+        }
+        .module img, .instructor img, .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .instructor img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .highlights, .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="particles">
+            <div class="particle" style="width:10px;height:10px;left:10%;animation-delay:0s;"></div>
+            <div class="particle" style="width:15px;height:15px;left:30%;animation-delay:5s;"></div>
+            <div class="particle" style="width:8px;height:8px;left:50%;animation-delay:10s;"></div>
+            <div class="particle" style="width:12px;height:12px;left:70%;animation-delay:2s;"></div>
+            <div class="particle" style="width:10px;height:10px;left:90%;animation-delay:8s;"></div>
+        </div>
+        <div class="hero-content container">
+            <h1>Professional Website Design</h1>
+            <p class="subtitle">Master HTML/CSS, Figma, responsive layouts & create stunning, user-friendly websites with us</p>
+            <div class="highlights">
+                <a href="#curriculum" class="highlight btn">💡 Curriculum Overview</a>
+                <a href="#instructors" class="highlight btn">👨🏻‍💻 Industry Experts</a>
+                <a href="#projects" class="highlight btn">👾 Real web-designing Projects</a>
+            </div>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">⚡ Start Designing Websites</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="curriculum fade-in">
+        <div class="container">
+            <h2>Curriculum Overview</h2>
+            <div class="curriculum-grid">
+                <div class="module">
+                    <img src="https://designmodo.com/wp-content/uploads/2015/05/18-Codepen.jpg" alt="HTML & CSS">
+                    <h3>Module 1: HTML & CSS Fundamentals</h3>
+                    <p>Structure, styling, Flexbox/Grid, animations, and responsive techniques.</p>
+                </div>
+                <div class="module">
+                    <img src="https://cdn.sanity.io/images/599r6htc/regionalized/3225dab2b34419e6bc17bf52633ed13b4e86cd6d-3262x1836.jpg?rect=1,0,3260,1836&w=1632&h=919&q=75&fit=max&auto=format" alt="Figma Prototyping">
+                    <h3>Module 2: Figma & UI/UX Design</h3>
+                    <p>Wireframing, prototyping, design systems, and user-centered principles.</p>
+                </div>
+                <div class="module">
+                    <img src="https://htmlcodeeditor.com/images/online-instant-html-code-editor.jpg" alt="Advanced Responsive">
+                    <h3>Module 3: Advanced Responsive & Accessibility</h3>
+                    <p>Mobile-first design, Bootstrap/Tailwind, SEO basics, and WCAG standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructors" class="instructors fade-in">
+        <div class="container">
+            <h2>Our Industry Experts</h2>
+            <div class="instructor-grid">
+                <div class="instructor">
+                    <img src="https://www.ahmedabadcomputereducation.com/assets/img/instructor/instructorDetail/saloni-new.jpg" alt="Emma Clarke">
+                    <h3>Emma Clarke</h3>
+                    <p>Senior Web Designer at Google, Figma expert.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://media.istockphoto.com/id/938226836/photo/happy-web-designers-developing-new-web-site-layout-in-office.jpg?s=612x612&w=0&k=20&c=cN1hsgBdU3Moh0tbEAXTGDO1k44C_hm0l46KkIEaU7s=" alt="David Kim">
+                    <h3>David Kim</h3>
+                    <p>UI/UX Lead at Adobe, responsive design specialist.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://static.tutsplus.com/packs/static/images/teach/marie-gardiner-f007a38cc99a082c5e02.jpg" alt="Lisa Wong">
+                    <h3>Lisa Wong</h3>
+                    <p>Freelance Designer, portfolio mentor for top agencies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects fade-in">
+        <div class="container">
+            <h2>Real web-designing Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://assets.justinmind.com/wp-content/uploads/2021/07/paula-wrzecionowska-ux-design-portoflio-example.png" alt="Personal Portfolio">
+                    <h3>Project 1: Personal Designer Portfolio</h3>
+                    <p>Fully responsive site with animations and dark/light mode.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://cdn.sanity.io/images/599r6htc/regionalized/2f58873f0043133017f94735885b4f975d5df46e-1000x633.png" alt="E-Commerce Landing">
+                    <h3>Project 2: E-Commerce Landing Page</h3>
+                    <p>Modern product showcase with grid layout and interactions.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://static-cse.canva.com/blob/1100617/create_portfolio_lead.fdac0721.jpg" alt="Agency Website">
+                    <h3>Project 3: Creative Agency Website</h3>
+                    <p>Multi-page site with parallax effects and contact form.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

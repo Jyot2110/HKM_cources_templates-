@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Full Stack Development Course</title>
+    <style>
+        /* Enable smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Particles Animation (neon green for coding theme) */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: #00ff00; /* Neon green glow */
+            border-radius: 50%;
+            opacity: 0.4;
+            box-shadow: 0 0 15px #00ff00;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); }
+            100% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        /* Hero Section with Animated Background - Full Stack Theme */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://thumbs.dreamstime.com/b/circuit-board-technology-electronic-chip-computer-motherboard-processor-background-digital-tech-hardware-network-data-system-395992994.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 180px 20px;
+            overflow: hidden;
+            animation: zoomBackground 30s infinite alternate;
+        }
+        @keyframes zoomBackground {
+            0% { background-size: 100%; }
+            100% { background-size: 110%; }
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(45deg, rgba(0,255,0,0.3), rgba(0,0,255,0.3));
+            opacity: 0.6;
+            animation: waveOverlay 15s infinite linear;
+        }
+        @keyframes waveOverlay {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(50px) translateY(50px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #00ff00; }
+            100% { text-shadow: 0 0 30px #00ff00; }
+        }
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        .highlights {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .highlight {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,255,0,0.5);
+            transition: all 0.3s;
+        }
+        .highlight:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0,255,0,0.6);
+        }
+        .highlight.btn {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #00ff00, #0000ff);
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(0,255,0,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0,255,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,255,0,0); }
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Fade-in on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sections */
+        .curriculum, .instructors, .projects {
+            padding: 100px 0;
+        }
+        .curriculum { background: #0a0a0a; }
+        .instructors { background: #111; }
+        .projects { background: #0a0a0a; }
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: #00ff00;
+        }
+        .curriculum-grid, .instructor-grid, .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .module, .instructor, .project-card {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.4s;
+        }
+        .module:hover, .instructor:hover, .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0,255,0,0.3);
+        }
+        .module img, .instructor img, .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .instructor img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .highlights, .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="particles">
+            <div class="particle" style="width:10px;height:10px;left:10%;animation-delay:0s;"></div>
+            <div class="particle" style="width:15px;height:15px;left:30%;animation-delay:5s;"></div>
+            <div class="particle" style="width:8px;height:8px;left:50%;animation-delay:10s;"></div>
+            <div class="particle" style="width:12px;height:12px;left:70%;animation-delay:2s;"></div>
+            <div class="particle" style="width:10px;height:10px;left:90%;animation-delay:8s;"></div>
+        </div>
+        <div class="hero-content container">
+            <h1>Professional Full Stack Development</h1>
+            <p class="subtitle">Master MERN Stack (MongoDB, Express, React, Node.js) & build scalable web apps from scratch us</p>
+            <div class="highlights">
+                <a href="#curriculum" class="highlight btn">💡 Curriculum Overview</a>
+                <a href="#instructors" class="highlight btn">👨🏻‍💻 Industry Experts</a>
+                <a href="#projects" class="highlight btn">👾 Real Full-Stack Projects</a>
+            </div>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">⚡ Start Full-Stack Developmentq Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="curriculum fade-in">
+        <div class="container">
+            <h2>Curriculum Overview</h2>
+            <div class="curriculum-grid">
+                <div class="module">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20191001192558/Screenshot-4914.png" alt="Frontend with React">
+                    <h3>Module 1: Frontend Mastery (React.js)</h3>
+                    <p>Components, hooks, state management, and responsive UI design.</p>
+                </div>
+                <div class="module">
+                    <img src="https://learn.microsoft.com/en-us/azure/documentdb/media/tutorial-nodejs-web-app/open-terminal-option.png" alt="Backend with Node.js">
+                    <h3>Module 2: Backend Development (Node.js & Express)</h3>
+                    <p>APIs, authentication, RESTful services, and server-side logic.</p>
+                </div>
+                <div class="module">
+                    <img src="https://www.contus.com/blog/wp-content/uploads/2024/03/build-full-stack-web-app.webp" alt="Database & Deployment">
+                    <h3>Module 3: Database & Full Deployment (MongoDB)</h3>
+                    <p>NoSQL databases, cloud hosting, and DevOps basics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructors" class="instructors fade-in">
+        <div class="container">
+            <h2>Our Industry Experts</h2>
+            <div class="instructor-grid">
+                <div class="instructor">
+                    <img src="https://i0.wp.com/animatricks.net/2022/wp-content/uploads/sites/13/2022/05/Peke.jpg?resize=1024%2C582&ssl=1" alt="Alex Turner">
+                    <h3>Alex Turner</h3>
+                    <p>Full Stack Lead at Meta, MERN specialist.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://img.freepik.com/premium-vector/set-3d-realistic-professional-old-teacher-professor-man-vector-character-holding-book_572288-2246.jpg" alt="Sophia Chen">
+                    <h3>Sophia Chen</h3>
+                    <p>React Expert, worked on enterprise apps at Amazon.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://img.freepik.com/premium-photo/3d-render-teacher-professional-manager-cartoon-character-stands-near-blank-board_204298-1699.jpg" alt="Mike Patel">
+                    <h3>Mike Patel</h3>
+                    <p>Node.js Architect, freelance for startups.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects fade-in">
+        <div class="container">
+            <h2>Real Full-Stack Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://res.cloudinary.com/dz209s6jk/image/upload/v1762438303/Admin/j2ibfma9ejnmldyvk9n2.webp" alt="E-Commerce App">
+                    <h3>Project 1: Full E-Commerce Platform</h3>
+                    <p>Complete MERN app with cart, payments, and admin dashboard.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://multipurposethemes.com/wp-content/uploads/2023/08/Screen-Shot-2022-12-01-at-18.07.19.jpg" alt="Social Media Clone">
+                    <h3>Project 2: Social Media Dashboard</h3>
+                    <p>Real-time posts, likes, comments, and user authentication.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://res.cloudinary.com/dz209s6jk/image/upload/v1762437458/Admin/wwxp7aehrlz4edwb64w0.webp" alt="Task Management Tool">
+                    <h3>Project 3: Task Management SaaS</h3>
+                    <p>Drag-drop boards, teams, and cloud deployment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        fadeElems.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

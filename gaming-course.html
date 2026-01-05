@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Gaming Program: Game Design & Development</title>
+    <style>
+        /* Enable smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Particles Animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            background: #9370db;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); }
+            100% { transform: translateY(-100px) translateX(100px); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.alphacoders.com/135/1355218.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 180px 20px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(138,43,226,0.4) 0%, transparent 70%);
+            animation: pulse 10s infinite alternate;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            100% { opacity: 0.8; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #8a2be2; }
+            100% { text-shadow: 0 0 30px #8a2be2; }
+        }
+        .hero .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+        .highlights {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease-out 0.5s both;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .highlight {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(138,43,226,0.5);
+            transition: all 0.3s;
+        }
+        .highlight:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(138,43,226,0.6);
+        }
+        /* Clickable highlights */
+        .highlight.btn {
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, #8a2be2, #4b0082);
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            animation: pulseBtn 2s infinite;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(138,43,226,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(138,43,226,0); }
+            100% { box-shadow: 0 0 0 0 rgba(138,43,226,0); }
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Fade-in on Scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Sections */
+        .curriculum, .instructors, .projects {
+            padding: 100px 0;
+        }
+        .curriculum {
+            background: #0a0a0a;
+        }
+        .instructors {
+            background: #111;
+        }
+        .projects {
+            background: #0a0a0a;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: #9370db;
+        }
+        .curriculum-grid, .instructor-grid, .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .module, .instructor, .project-card {
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.4s;
+        }
+        .module:hover, .instructor:hover, .project-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(138,43,226,0.3);
+        }
+        .module img, .instructor img, .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        .instructor img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .highlights, .cta-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="particles">
+            <!-- Floating particles -->
+            <div class="particle" style="width:10px;height:10px;left:10%;animation-delay:0s;"></div>
+            <div class="particle" style="width:15px;height:15px;left:30%;animation-delay:5s;"></div>
+            <div class="particle" style="width:8px;height:8px;left:50%;animation-delay:10s;"></div>
+            <div class="particle" style="width:12px;height:12px;left:70%;animation-delay:2s;"></div>
+            <div class="particle" style="width:10px;height:10px;left:90%;animation-delay:8s;"></div>
+        </div>
+        <div class="hero-content container">
+            <h1>Program in Game Design & Development</h1>
+            <p class="subtitle">Master the complete game development & designing with us</p>
+            <div class="highlights">
+                <a href="#curriculum" class="highlight btn">💡 Curriculum Overview</a>
+                <a href="#instructors" class="highlight btn">👨🏻‍💻 Game Industry Experts</a>
+                <a href="#projects" class="highlight btn">👾 Real Game Projects</a>
+            </div>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">⚡ Start Your Game Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="curriculum" class="curriculum fade-in">
+        <div class="container">
+            <h2>Curriculum Overview</h2>
+            <div class="curriculum-grid">
+                <div class="module">
+                    <img src="https://connect-prd-cdn.unity.com/20190709/learn/images/fe143040-3403-468b-a1bd-af3670290ade_Screenshot_2019_07_09_at_13.02.41__3_.png" alt="Unity Basics">
+                    <h3>Module 1: Unity Fundamentals</h3>
+                    <p>Learn scripting, 2D/3D modeling, and prototyping. Build your first platformer.</p>
+                </div>
+                <div class="module">
+                    <img src="https://d1iv7db44yhgxn.cloudfront.net/documentation/images/9f067774-e66d-4050-b104-94ec2941d290/blueprint_editor_example.png" alt="Unreal Engine">
+                    <h3>Module 2: Unreal Engine Mastery</h3>
+                    <p>Advanced blueprints, lighting, and VR integration. Create a high-fidelity FPS demo.</p>
+                </div>
+                <div class="module">
+                    <img src="https://images.squarespace-cdn.com/content/v1/64e9c897cc6fb4313decf8d6/17f6a059-a062-4fb6-bf6f-0eaa46f9d6b1/sci-fi-environment-design-by-miguel-nogueira.jpg" alt="Game Design">
+                    <h3>Module 3: Design & Polish</h3>
+                    <p>Narrative, UX/UI, and multiplayer mechanics. Launch a complete indie game.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instructors" class="instructors fade-in">
+        <div class="container">
+            <h2>Our Game Industry Experts</h2>
+            <div class="instructor-grid">
+                <div class="instructor">
+                    <img src="https://res.cloudinary.com/highereducation/images/w_1024,h_683,c_scale/v1713549285/BestColleges.com/computer-programmer-working-at-his-desk/computer-programmer-working-at-his-desk-1024x683.jpg" alt="John Doe">
+                    <h3>John Doe</h3>
+                    <p>Lead Designer at Epic Games, 10+ years in AAA titles.</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://s3.us-west-1.amazonaws.com/idtech-2018-media-prd/card_ipc_instructors_deee72b54e.jpg" alt="Jane Smith">
+                    <h3>Jane Smith</h3>
+                    <p>Unity Expert & Indie Dev, Creator of "Pixel Quest".</p>
+                </div>
+                <div class="instructor">
+                    <img src="https://www.ideou.com/cdn/shop/t/4/assets/instructor-suzanne-gibbs-howard.jpg?v=128658319863697608131574287977" alt="Alex Rivera">
+                    <h3>Alex Rivera</h3>
+                    <p>Ubisoft Veteran, Specializing in Narrative Design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects fade-in">
+        <div class="container">
+            <h2>Real Game Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://assetstorev1-prd-cdn.unity3d.com/key-image/7de79006-0e02-4ee3-8c78-ae2d0da518fa.png" alt="Neon Runner">
+                    <h3>Project 1: Neon Runner (Unity Platformer)</h3>
+                    <p>A fast-paced 2D endless runner with procedural levels, power-ups, and leaderboards. Built entirely in Unity.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://d3kjluh73b9h9o.cloudfront.net/original/4X/b/5/8/b589bc651ec932fdde6e885caebeb6938d36857c.jpeg" alt="Sci-Fi FPS">
+                    <h3>Project 2: Shadow Strike (Unreal FPS)</h3>
+                    <p>First-person shooter demo with advanced AI, dynamic lighting, and weapon systems in Unreal Engine.</p>
+                </div>
+                <div class="project-card">
+                    <img src="https://i.redd.it/k8zl635h83z51.jpg" alt="Multiplayer Arena">
+                    <h3>Project 3: Arena Clash (Multiplayer Indie)</h3>
+                    <p>Real-time multiplayer battle arena with team-based gameplay and custom character abilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple scroll animation trigger -->
+    <script>
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElems.forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
